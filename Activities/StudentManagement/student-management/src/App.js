@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import StudentList from "./Components/StudentList";
 import AddStudentForm from "./Components/AddStudentForm";
+import "./App.css";
 
 function App() {
   // Function for StudentList.
