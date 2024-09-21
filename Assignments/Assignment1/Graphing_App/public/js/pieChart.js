@@ -1,0 +1,22 @@
+google.charts.load("current", { packages: ["corechart"] });
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+  const data = google.visualization.arrayToDataTable([
+    ["Contry", "Mhl"],
+    ["Italy", 54.8],
+    ["France", 48.6],
+    ["Spain", 44.4],
+    ["USA", 23.9],
+    ["Argentina", 14.5],
+  ]);
+
+  const options = {
+    title: "World Wide Wine Production",
+  };
+
+  const chart = new google.visualization.PieChart(
+    document.getElementById("userPieChart")
+  );
+  chart.draw(data, options);
+}

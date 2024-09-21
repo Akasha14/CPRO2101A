@@ -21,15 +21,6 @@ body {
     padding: 5px 10px;
     text-align: center;
   }
-
-  img {
-    width: 100%;
-    height: auto;
-    max-width: 400px;
-    max-height: 200px;
-    border: 3px solid black;
-    border-radius: 8px;
-  }
 }
 
 #createArea {
@@ -70,6 +61,10 @@ button {
   border-radius: 8px;
   transition: ease 0.3s all;
 
+  #pieCreate {
+    margin-top: 15px;
+  }
+
   &:hover {
     background-color: rgb(151, 151, 151);
     cursor: pointer;
@@ -82,7 +77,14 @@ button {
   background-color: rgb(134, 224, 254);
   padding: 10px;
   margin-bottom: 20px;
-  
+
+  .createPie {
+    text-align: center;
+
+    button {
+      margin-top: 25px;
+    }
+  }
 }
 
 label {
@@ -98,18 +100,15 @@ label {
   }
 }
 
-.submitbutton { 
-  text-align: center; /* Centers the button horizontally */
-  margin-top: 20px; /* Adds some space above the button */
+.pieChartContainer {
+  display: none;
+  width: 700px;
+  border: 4px solid black;
+  justify-content: center;
+  align-items: center;
+}
 
-  button {
-    align-self: center;
-    padding: 10px 20px; /* Adds padding inside the button */
-    font-size: 16px; /* Increases the font size */
-    border: none; /* Removes the default border */
-    border-radius: 4px; /* Rounds the corners */
-    background-color: #3498db; /* Button background color */
-    color: white; /* Text color */
-    cursor: pointer; /* Changes cursor to pointer on hover */
-  }
+#userPieChart {
+  width: 100%;
+  height: 100%;
 }

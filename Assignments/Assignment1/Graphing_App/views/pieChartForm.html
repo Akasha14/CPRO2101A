@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pie Chart Generator</title>
+    <link rel="stylesheet" href="css/charts.css" />
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+  </head>
+  <body>
+    <div class="mainPage">
+      <button id="homeButton">Back to Home</button>
+
+      <h1>Pie Chart Generator</h1>
+
+      <form id="pieChartForm">
+        <div class="pieInfo">
+          <label for="chartTitle">Chart Title:</label>
+          <input type="text" id="chartTitle" name="chartTitle" required />
+          <br /><br />
+
+          <label for="numSectors">How Many Sectors? (2 to 6):</label>
+          <select id="numSectors" name="numSectors" required>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+          </select>
+          <br /><br />
+
+          <label for="totalValue">Total Value of Pie Chart:</label>
+          <input type="number" id="totalValue" name="totalValue" required />
+          <br /><br />
+        </div>
+
+        <div id="sectorsContainer">
+          <div class="sector">
+            <h3>Sector 1:</h3>
+            <label for="sector1Label">Label:</label>
+            <input type="text" id="sector1Label" name="sector1Label" required />
+            <label for="sector1Value">Value:</label>
+            <input
+              type="number"
+              id="sector1Value"
+              name="sector1Value"
+              required
+            />
+          </div>
+          <div class="sector">
+            <h3>Sector 2:</h3>
+            <label for="sector2Label">Label:</label>
+            <input type="text" id="sector2Label" name="sector2Label" required />
+            <label for="sector2Value">Value:</label>
+            <input
+              type="number"
+              id="sector2Value"
+              name="sector2Value"
+              required
+            />
+          </div>
+          <!-- More sectors will be here with JavaScript -->
+        </div>
+
+        <div class="createPie">
+          <button type="submit">Create Chart</button>
+        </div>
+      </form>
+
+      <div class="pieChartContainer">
+        <div id="userPieChart" style="max-width: 700px; height: 400px"></div>
+      </div>
+    </div>
+
+    <script src="/js/pieForm.js"></script>
+  </body>
+</html>
