@@ -5,12 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bar Chart Generator</title>
     <link rel="stylesheet" href="css/charts.css" />
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
   </head>
   <body>
-    <button id="homeButton">Home</button>
+    <div class="mainPage">
+      <button id="homeButton">Back to Home</button>
 
-    <h1>Bar Chart Generator</h1>
+      <h1>Bar Chart Generator</h1>
 
+      <form id="chartForm">
+        <div>
+          <label for="chartTitle">Chart Title:</label>
+          <input type="text" id="chartTitle" name="chartTitle" required />
+          <br /><br />
 
+          <label for="numOfBars">How Many Bars? (2 to 6):</label>
+          <select id="numOfBars" name="numOfBars" required>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+          </select>
+          <br /><br />
+
+          <label for="gridlineInterval"
+            >Horizontal Gridline Interval (10-100):</label
+          >
+          <input
+            type="number"
+            id="gridlineInterval"
+            name="gridlineInterval"
+            min="10"
+            max="100"
+            required
+          />
+          <br /><br />
+
+          <label for="yAxisLabel">Y-Axis Label:</label>
+          <input type="text" id="yAxisLabel" name="yAxisLabel" required />
+          <br /><br />
+        </div>
+
+        <div id="barsContainer">
+          <div class="bar">
+            <h3>Bar 1:</h3>
+            <label for="bar1Label">Label:</label>
+            <input type="text" id="bar1Label" name="bar1Label" required />
+            <label for="bar1Value">Value:</label>
+            <input
+              type="number"
+              id="bar1Value"
+              name="bar1Value"
+              min="0"
+              required
+            />
+          </div>
+          <div class="bar">
+            <h3>Bar 2:</h3>
+            <label for="bar2Label">Label:</label>
+            <input type="text" id="bar2Label" name="bar2Label" required />
+            <label for="bar2Value">Value:</label>
+            <input
+              type="number"
+              id="bar2Value"
+              name="bar2Value"
+              min="0"
+              required
+            />
+          </div>
+          <!-- Additional bars will be added with JavaScript -->
+        </div>
+
+        <div class="createChart">
+          <button type="submit">Create Chart</button>
+        </div>
+      </form>
+
+      <div class="chartContainer">
+        <div id="userBarChart" style="max-width: 700px; height: 400px"></div>
+      </div>
+    </div>
+
+    <script src="/js/barForm.js"></script>
   </body>
 </html>

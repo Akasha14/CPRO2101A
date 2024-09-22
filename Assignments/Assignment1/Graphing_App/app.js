@@ -12,14 +12,14 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/views/index.html");
 });
 
-// Pie Chart Form Page
-app.get("/PieChartForm", (req, res) => {
-  res.sendFile(__dirname + "/views/pieChartForm.html");
-});
-
 // Pie Chart Page
 app.get("/PieChart", (req, res) => {
   res.sendFile(__dirname + "/views/pieChart.html");
+});
+
+// Bar Chart Page
+app.get("/BarChart", (req, res) => {
+  res.sendFile(__dirname + "/views/barChart.html");
 });
 
 const PORT = 3030;

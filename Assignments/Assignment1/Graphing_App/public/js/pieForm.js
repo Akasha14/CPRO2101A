@@ -63,12 +63,12 @@ function updateFinalSector() {
 
 // Pie Graph code (on submit)
 document
-  .getElementById("pieChartForm")
+  .getElementById("chartForm")
   .addEventListener("submit", function (event) {
     event.preventDefault(); // Prevent page refresh
 
     // Show the pie chart container
-    const pieChartContainer = document.querySelector(".pieChartContainer");
+    const pieChartContainer = document.querySelector(".chartContainer");
     pieChartContainer.style.display = "flex";
 
     // Gather data from the form
