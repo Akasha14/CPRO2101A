@@ -1,3 +1,5 @@
+// Almost exact same code as pieForm.js, other than the chart generation
+
 document.getElementById("homeButton").addEventListener("click", function () {
   window.location.href = "/";
 });
@@ -24,14 +26,14 @@ numBarsSelect.addEventListener("change", function () {
         <label for="bar${i}Label">Label:</label>
         <input type="text" id="bar${i}Label" name="bar${i}Label" required />
         <label for="bar${i}Value">Value:</label>
-        <input type="number" id="bar${i}Value" name="bar${i}Value" required min="0" />
+        <input type="number" id="bar${i}Value" name="bar${i}Value" required min="0" max="400" />
       `;
 
     barsContainer.appendChild(barDiv);
   }
 });
 
-// Initialize with 2 bars when first loading
+// Initialize(execute event listener) with 2 bars when first loading
 numBarsSelect.dispatchEvent(new Event("change"));
 
 // Bar Graph code (on submit)
@@ -40,11 +42,11 @@ document
   .addEventListener("submit", function (event) {
     event.preventDefault(); // Prevent page refresh
 
-    // Show the bar chart container
+    // Show the bar chart container(originally hidden)
     const barChartContainer = document.querySelector(".chartContainer");
     barChartContainer.style.display = "flex";
 
-    // Gather data from the form
+    // Gather user data from the form
     const chartTitle = document.getElementById("chartTitle").value;
     const numBars = parseInt(document.getElementById("numOfBars").value);
     const gridlineInterval = parseInt(
@@ -54,7 +56,7 @@ document
 
     const data = [["Label", yAxisLabel]]; // Set the first row with label for Y-axis
 
-    // Populate 2D array with user input for bars
+    // Populate 2D array with user input
     for (let i = 1; i <= numBars; i++) {
       const label = document.getElementById(`bar${i}Label`).value;
       const value = parseFloat(document.getElementById(`bar${i}Value`).value);
@@ -81,20 +83,22 @@ function drawBarChart(dataArray, chartTitle, gridlineInterval, yAxisLabel) {
 
     const options = {
       title: chartTitle,
+      legend: "none",
       vAxis: {
         title: yAxisLabel,
         minValue: 0,
+        // Ensure the chart scales up to the next interval
         viewWindow: {
           min: 0,
-          max: maxGridline, // Ensure the chart scales up to the next interval
+          max: maxGridline,
         },
+        // Set gridlines based on interval
         gridlines: {
-          count: maxGridline / gridlineInterval + 1, // Set gridlines based on interval
+          count: maxGridline / gridlineInterval + 1,
         },
-        ticks: Array.from(
-          { length: maxGridline / gridlineInterval + 1 },
-          (_, i) => i * gridlineInterval
-        ), // Set tick marks at intervals
+      },
+      series: {
+        0: { targetAxisIndex: 1 }, // Attach the first series to the right-side axis
       },
     };
 
@@ -104,6 +108,3 @@ function drawBarChart(dataArray, chartTitle, gridlineInterval, yAxisLabel) {
     chart.draw(data, options);
   });
 }
-
-// Initialize the page with the default number of bars
-numBarsSelect.dispatchEvent(new Event("change"));

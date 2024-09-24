@@ -30,6 +30,9 @@ numSectorsSelect.addEventListener("change", function () {
     sectorsContainer.appendChild(sectorDiv);
   }
 
+  // Initialize(execute event listener) with 2 sectors when first loading
+  numSectorsSelect.dispatchEvent(new Event("change"));
+
   // Make a list of input elements from sectorsContainer whose IDs start with sector and end with Value
   const sectorValueInputs = sectorsContainer.querySelectorAll(
     `input[id^="sector"][id$="Value"]`
@@ -37,7 +40,7 @@ numSectorsSelect.addEventListener("change", function () {
 
   // All but the final sectorValue
   for (let i = 0; i < numSectors - 1; i++) {
-    // Input given = updateFinalSector
+    // EventListener -> Input given = updateFinalSector
     sectorValueInputs[i].addEventListener("input", updateFinalSector);
   }
   updateFinalSector();
@@ -50,8 +53,9 @@ function updateFinalSector() {
 
   // Sum up the sectorValues
   for (let i = 1; i < numSectors; i++) {
-    const sectorValue =
-      parseFloat(document.getElementById(`sector${i}Value`).value) || 0;
+    const sectorValue = parseFloat(
+      document.getElementById(`sector${i}Value`).value
+    );
     sum += sectorValue;
   }
 
@@ -67,11 +71,11 @@ document
   .addEventListener("submit", function (event) {
     event.preventDefault(); // Prevent page refresh
 
-    // Show the pie chart container
+    // Show the pie chart container(originally hidden)
     const pieChartContainer = document.querySelector(".chartContainer");
     pieChartContainer.style.display = "flex";
 
-    // Gather data from the form
+    // Gather user data from the form
     const chartTitle = document.getElementById("chartTitle").value;
     const numSectors = parseInt(document.getElementById("numSectors").value);
     const totalValue = parseFloat(document.getElementById("totalValue").value);
@@ -87,11 +91,11 @@ document
       data.push([label, value]);
     }
 
-    // Call the drawChart function with the new data
+    // Call the drawChart function with the user data
     drawChart(data, chartTitle);
   });
 
-// Google charts created inside function.
+// Google charts used inside function.
 function drawChart(dataArray, chartTitle) {
   google.charts.load("current", { packages: ["corechart"] });
   google.charts.setOnLoadCallback(() => {
@@ -105,6 +109,3 @@ function drawChart(dataArray, chartTitle) {
     chart.draw(data, options);
   });
 }
-
-// Initialize(execute event listener) with 2 sectors when first loading
-numSectorsSelect.dispatchEvent(new Event("change"));
